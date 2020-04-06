@@ -1,22 +1,25 @@
+#!/bin/bash
+
+set -euox pipefail
+
 function update {
-    git clone git@github.com:ory/$1.git tmp/$1 ||true
-    cd tmp/$1
+    dir="$(mktemp -d -t ci-XXXXXXXXXX)/$1"
+    git clone git@github.com:ory/"$1".git "$dir" || true
 
-    git town main-branch $3
-    git checkout $3
-    git reset --hard HEAD
-    git hack docusaurus-$(date +"%m-%d-%y-%H-%M-%S")
+    rm -rf node_modules .docusaurus package-lock.json build || true
+    cp -R ../docusaurus-template/. "$dir/docs"
 
-    cp -R ../../. doc/
-    rm doc/package-lock.json
-    npm run i
-    rm doc/update.sh
-
-    git add -A || true
-    git commit -a -s -m "docs: update docusaurus template" || true
-    git npr || true
-
-    cd ../..
+    (cd "$dir"; \
+      git town main-branch master; \
+      git checkout master; \
+      git reset --hard HEAD; \
+      git hack docusaurus-$(date +"%m-%d-%y-%H-%M-%S"); \
+      (cd docs; npm install); \
+      rm docs/update.sh;
+      (git add -A && \
+      git commit -a -s -m "chore: update docusaurus template" && \
+      git npr) || true
+    )
 }
 
 update oathkeeper

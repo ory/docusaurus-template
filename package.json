@@ -35,6 +35,7 @@
     "json-schema-ref-parser": "8.0.0",
     "prettier": "2.0.2",
     "ramda": "0.27.0",
+    "remark-admonitions": "1.2.1",
     "yaml": "1.8.3"
   }
 }
