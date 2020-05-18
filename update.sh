@@ -17,6 +17,7 @@ function update {
       git hack docusaurus-$(date +"%m-%d-%y-%H-%M-%S"))
 
     cp -Rf ../docusaurus-template/. "$dir/docs"
+    mv -f "$dir/docs/README_TEMPLATE.md" "$dir/docs/README.md"
 
     (cd "$dir"; \
       rm docs/update.sh; \

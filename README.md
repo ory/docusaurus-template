@@ -1,33 +1,6 @@
-# Documentation
+# ORY's Documentation Template Repository
 
-This directory contains the project's documentation.
-
-## Develop
-
-To change the documentation locally, you need NodeJS installed.
-Next, install the dependencies:
-
-```
-$ npm
-```
-
-### Develop
-
-```
-$ npm start
-```
-
-This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ npm build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Create Documentation
+## Initialize Documentation
 
 To create a new documentation for a new or existing project, copy the contents (without `node_modules`)
 into the project's `./docs` directory. Next you need to create these files (relative to the project's root directory)
@@ -70,6 +43,8 @@ module.exports = {
 // ./docs/src/css/theme.css
 // empty file is ok
 ```
+
+## Adding Documentation
 
 Next, put your markdown files in `./docs/docs`. You may also want to add the CircleCI Orb `ory/docs` to your CI config,
 depending on the project type.
