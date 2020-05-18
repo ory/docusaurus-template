@@ -32,3 +32,7 @@ update oathkeeper
 update keto
 update hydra
 update kratos
+
+if [ "$1" = "--private" ]; then
+  update cloud
+fi
