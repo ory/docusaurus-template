@@ -44,6 +44,12 @@ module.exports = {
 // empty file is ok
 ```
 
+```js
+// ./docs/versions.json
+// empty object is ok
+{}
+```
+
 ## Adding Documentation
 
 Next, put your markdown files in `./docs/docs`. You may also want to add the CircleCI Orb `ory/docs` to your CI config,
