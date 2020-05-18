@@ -44,9 +44,9 @@ module.exports = {
 // empty file is ok
 ```
 
-```
+```js
 // ./docs/versions.json
-// some valid json value is ok
+// empty object is ok
 {}
 ```
 
