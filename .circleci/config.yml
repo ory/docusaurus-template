@@ -1,0 +1,20 @@
+version: 2.1
+
+jobs:
+  update:
+    machine:
+      image: ubuntu-1604:202004-01
+    steps:
+      - checkout
+      - run: "git config --global user.email aeneasr@users.noreply.github.com"
+      - run: "git config --global user.name aeneasr"
+      - run: ./update.sh
+
+workflows:
+  welcome:
+    jobs:
+      - update:
+          name: Update Dependents
+          filters:
+            branches:
+              only: master
