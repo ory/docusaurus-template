@@ -24,7 +24,7 @@ function update {
       ./git-town main-branch master; \
       git checkout master; \
       git reset --hard HEAD; \
-      ./git-town hack $branch
+      ./git-town hack $branch)
 
     cp -Rf ../docusaurus-template/. "$dir/docs"
     mv -f "$dir/docs/README_TEMPLATE.md" "$dir/docs/README.md"
