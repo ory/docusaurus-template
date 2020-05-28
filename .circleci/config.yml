@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   update:
     docker:
-      - image: cimg/node:latest
+      - image: circleci/node:latest
     steps:
       - checkout
       - run: "git config --global user.email aeneasr@users.noreply.github.com"
