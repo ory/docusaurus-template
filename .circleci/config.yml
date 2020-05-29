@@ -11,7 +11,7 @@ jobs:
       - run: ./update.sh
 
 workflows:
-  welcome:
+  update:
     jobs:
       - update:
           name: Update Dependents
