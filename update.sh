@@ -44,8 +44,8 @@ function update {
     )
 }
 
-#update oathkeeper
-#update keto
+update oathkeeper
+update keto
 update hydra
-#update kratos
-#update cloud
+update kratos
+update cloud
