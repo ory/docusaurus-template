@@ -110,6 +110,7 @@ module.exports = {
         editUrl:
           `https://github.com/ory/${config.projectSlug}/edit/master/docs`,
         routeBasePath: '',
+        homePageId: 'index',
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
         remarkPlugins: [admonitions],
