@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - run: >
-          mkdir ~/.config/gh &&
+          mkdir -p ~/.config/gh &&
           echo '{
             "hosts": {
               "github.com": {
