@@ -30,7 +30,7 @@ function update {
       git reset --hard HEAD; \
       git-town hack $branch)
 
-    cp -Rf ./* "$dir/docs"
+    cp -Rf -- * "$dir/docs"
 
     (cd "$dir"; \
       rm docs/update.sh; \
