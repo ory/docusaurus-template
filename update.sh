@@ -6,6 +6,7 @@ rm -rf .docusaurus package-lock.json build || true
 npm i
 rm -rf node_modules || true
 
+
 mkdir bin
 export PATH="$PATH:$(pwd)/bin"
 cd bin
@@ -30,7 +31,7 @@ function update {
       git reset --hard HEAD; \
       git-town hack $branch)
 
-    cp -Rf ../docusaurus-template/. "$dir/docs"
+    cp -Rf "$(pwd)/." "$dir/docs"
 
     (cd "$dir"; \
       rm docs/update.sh; \

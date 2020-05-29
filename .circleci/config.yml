@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   update:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:14.3.0
     working_directory: ~/docusaurus-template
     steps:
       - checkout
