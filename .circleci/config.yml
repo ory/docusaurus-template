@@ -4,6 +4,7 @@ jobs:
   update:
     docker:
       - image: circleci/node:latest
+    working_directory: ~/docusaurus-template
     steps:
       - checkout
       - run: "git config --global user.email aeneasr@users.noreply.github.com"
