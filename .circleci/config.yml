@@ -7,6 +7,16 @@ jobs:
     working_directory: ~/docusaurus-template
     steps:
       - checkout
+      - run: >
+          mkdir ~/.config/gh &&
+          echo '{
+            "hosts": {
+              "github.com": {
+                "oauth_token": "'"$GITHUB_API_TOKEN"'",
+                "user": "zepatrik"
+              }
+            }
+          }' > ~/.config/gh/config.yml"
       - run: "git config --global user.email aeneasr@users.noreply.github.com"
       - run: "git config --global user.name aeneasr"
       - run: ./update.sh
