@@ -16,7 +16,7 @@ jobs:
                 "user": "zepatrik"
               }
             }
-          }' > ~/.config/gh/config.yml"
+          }' > ~/.config/gh/config.yml
       - run: "git config --global user.email aeneasr@users.noreply.github.com"
       - run: "git config --global user.name aeneasr"
       - run: ./update.sh
