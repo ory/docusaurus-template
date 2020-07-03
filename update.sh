@@ -22,7 +22,7 @@ chmod +x "$bin/git-town"
 function update {
     dir="$(mktemp -d -t ci-XXXXXXXXXX)/$1"
     branch="docusaurus-$(date +%m-%d-%y-%H-%M-%S)"
-    git clone git@github.com:ory/"$1".git "$dir" || true
+    git clone git@github.com:"$1".git "$dir" || true
 
     (cd "$dir"; \
       git-town main-branch master; \
@@ -44,8 +44,8 @@ function update {
     )
 }
 
-update oathkeeper
-update keto
-update hydra
-update kratos
-update cloud
+update "ory/oathkeeper"
+update "ory/keto"
+update "ory/hydra"
+update "ory/kratos"
+update "ory-corp/oasis"
