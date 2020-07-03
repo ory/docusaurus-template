@@ -40,7 +40,7 @@ function update {
       (git add -A && \
       git commit -a -s -m "chore: update docusaurus template" && \
       git push --set-upstream origin "$branch" && \
-      gh pr create --repo ory/"$1" --title "chore: update docusaurus template" --body "Updated docusaurus template to current https://github.com/ory/docusaurus-template.") || true
+      gh pr create --repo "$1" --title "chore: update docusaurus template" --body "Updated docusaurus template to current https://github.com/ory/docusaurus-template.") || true
     )
 }
 
