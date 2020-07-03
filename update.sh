@@ -10,10 +10,10 @@ rm -rf .docusaurus package-lock.json build || true
 npm i
 
 # get github api client
-wget -O "$bin/gh.tar.gz" https://github.com/cli/cli/releases/download/v0.9.0/gh_0.9.0_linux_amd64.tar.gz
+wget -O "$bin/gh.tar.gz" https://github.com/cli/cli/releases/download/v0.10.1/gh_0.10.1_linux_amd64.tar.gz
 tar -xf "$bin/gh.tar.gz"
-mv gh_0.9.0_linux_amd64/bin/gh "$bin/gh"
-rm -rfd gh_0.9.0_linux_amd64
+mv gh_0.10.1_linux_amd64/bin/gh "$bin/gh"
+rm -rfd gh_0.10.1_linux_amd64
 
 # get git-town
 wget -O "$bin/git-town" https://github.com/git-town/git-town/releases/download/v7.3.0/git-town-linux-amd64

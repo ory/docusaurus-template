@@ -24,8 +24,8 @@ jobs:
 workflows:
   update:
     jobs:
-      - update:
-          name: Update Dependents
-          filters:
-            branches:
-              only: master
+#      - update:
+#          name: Update Dependents
+#          filters:
+#            branches:
+#              only: master
