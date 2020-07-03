@@ -17,3 +17,5 @@ jobs:
           git config --global user.name aeneasr
       - name: Run update script
         run: ./update.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
