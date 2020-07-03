@@ -6,8 +6,8 @@ set -euox pipefail
 bin=$(mktemp -d -t bin-XXXXXX)
 export PATH="$PATH:$bin"
 
-rm -rf .docusaurus package-lock.json build || true
-npm i
+rm -rf .docusaurus build || true
+npm ci
 
 # get github api client
 wget -O "$bin/gh.tar.gz" https://github.com/cli/cli/releases/download/v0.10.1/gh_0.10.1_linux_amd64.tar.gz
