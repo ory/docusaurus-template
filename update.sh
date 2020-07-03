@@ -35,7 +35,7 @@ function update {
     (cd "$dir"; \
       rm docs/update.sh; \
       mv -f docs/README_TEMPLATE.md docs/README.md; \
-      rm -rf docs/node_modules docs/.circleci || true ; \
+      rm -rf docs/node_modules docs/.circleci docs/.github || true ; \
       git status; \
       (git add -A && \
       git commit -a -s -m "chore: update docusaurus template" && \
