@@ -2,6 +2,8 @@ const config = require('./contrib/config.js')
 const fs = require('fs')
 const admonitions = require('remark-admonitions')
 
+const githubRepoName = config.projectSlug === 'ecosystem' ? 'docs' : config.projectSlug
+
 const links = [
   {
     to: 'index',
@@ -30,7 +32,7 @@ const links = [
     position: 'left'
   },
   {
-    href: `https://github.com/ory/${config.projectSlug}`,
+    href: `https://github.com/ory/${githubRepoName}`,
     label: 'GitHub',
     position: 'left'
   }
@@ -76,7 +78,7 @@ module.exports = {
       logo: {
         alt: config.projectName,
         src: `img/logo-${config.projectSlug}.svg`,
-        href: `https://www.ory.sh/${config.projectSlug}`
+        href: `https://www.ory.sh/${config.projectSlug === 'ecosystem' ? '' : config.projectSlug}`
       },
       items: links
     },
@@ -113,7 +115,7 @@ module.exports = {
             ? 'contrib/docs'
             : 'docs',
         sidebarPath: require.resolve('./contrib/sidebar.js'),
-        editUrl: `https://github.com/ory/${config.projectSlug}/edit/master/docs`,
+        editUrl: `https://github.com/ory/${githubRepoName}/edit/master/docs`,
         routeBasePath: '',
         homePageId: 'index',
         showLastUpdateAuthor: true,
