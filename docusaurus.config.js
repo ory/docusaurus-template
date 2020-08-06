@@ -2,7 +2,9 @@ const config = require('./contrib/config.js')
 const fs = require('fs')
 const admonitions = require('remark-admonitions')
 
-const githubRepoName = config.projectSlug === 'ecosystem' ? 'docs' : config.projectSlug
+const githubRepoName = config.projectSlug === 'ecosystem'
+  ? 'docs'
+  : config.projectSlug
 
 const links = [
   {
