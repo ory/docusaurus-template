@@ -79,9 +79,9 @@ module.exports = {
           dropdownItemsAfter: [
             {
               to: '/versions',
-              label: 'All versions',
-            },
-          ],
+              label: 'All versions'
+            }
+          ]
         }
       ]
     },
@@ -123,7 +123,7 @@ module.exports = {
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
         remarkPlugins: [admonitions],
-        disableVersioning: false,
+        disableVersioning: false
       }
     ],
     '@docusaurus/plugin-content-pages',
