@@ -39,30 +39,12 @@ const links = [
   }
 ]
 
-let version = ['latest']
-
-if (fs.existsSync('./versions.json')) {
-  version = require('./versions.json')
-  if (version && version.length > 0) {
-    links.push({
-      label: version[0],
-      position: 'right',
-      to: 'versions'
-    })
-  }
-  if (version.length === 0) {
-    version = ['master']
-  }
-}
-
 module.exports = {
   title: config.projectName,
   tagline: config.projectTagLine,
   url: `https://www.ory.sh/`,
   baseUrl: `/${config.projectSlug}/docs/`,
   favicon: 'img/favico.png',
-  onBrokenLinks: 'error',
-  onBrokenMarkdownLinks: 'error',
   organizationName: 'ory', // Usually your GitHub org/user name.
   projectName: config.projectSlug, // Usually your repo name.
   themeConfig: {
@@ -85,7 +67,20 @@ module.exports = {
           config.projectSlug === 'ecosystem' ? '' : config.projectSlug
         }`
       },
-      items: links
+      items: [
+        ...links,
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownActiveClassDisabled: true,
+          dropdownItemsAfter: [
+            {
+              to: '/versions',
+              label: 'All versions',
+            },
+          ],
+        }
+      ]
     },
     footer: {
       style: 'dark',
@@ -124,7 +119,8 @@ module.exports = {
         routeBasePath: '/',
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
-        remarkPlugins: [admonitions]
+        remarkPlugins: [admonitions],
+        disableVersioning: false,
       }
     ],
     '@docusaurus/plugin-content-pages',
