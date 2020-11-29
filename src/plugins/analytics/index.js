@@ -20,6 +20,26 @@ module.exports = function (context) {
         headTags: [
           {
             tagName: 'script',
+            innerHTML: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+gtag('consent', 'default', {
+  'ad_storage': 'allowed',
+  'analytics_storage': 'denied',
+  'ads_data_redaction': true
+});
+
+gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'analytics_storage': 'denied',
+  'ads_data_redaction': true,
+  'region': ['DE', 'US-CA']
+});
+            `
+          },
+          {
+            tagName: 'script',
             attributes: {
               async: true,
               src: 'https://www.googletagmanager.com/gtag/js?id=UA-71865250-1'
@@ -33,11 +53,6 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
 gtag('config', 'UA-71865250-1', { 'anonymize_ip': true });
-gtag('consent', 'default', {
-  'ad_storage': 'denied',
-  'analytics_storage': 'denied',
-  'ads_data_redaction': true
-});
             `
           }
         ]
