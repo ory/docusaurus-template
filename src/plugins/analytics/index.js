@@ -34,7 +34,7 @@ gtag('consent', 'default', {
   'ad_storage': 'denied',
   'analytics_storage': 'denied',
   'ads_data_redaction': true,
-  'region': ['DE', 'US-CA']
+  'region': ['BE','BG','CZ','DK','DE','EE','IE','EL','ES','FR','HR','IT','CY','LV','LT','LU','HU','MT','NL','AT','PL','PT','RO','SI','SK','FI','SE','US-CA']
 });
             `
           },
