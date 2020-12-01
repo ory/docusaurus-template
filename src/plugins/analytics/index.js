@@ -25,8 +25,8 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 
 gtag('consent', 'default', {
-  'ad_storage': 'allowed',
-  'analytics_storage': 'denied',
+  'analytics_storage': 'allowed',
+  'ad_storage': 'denied',
   'ads_data_redaction': true
 });
 
@@ -52,6 +52,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
+gtag('config', 'G-J01VQCC9Y9'); // automatically anonymized
 gtag('config', 'UA-71865250-1', { 'anonymize_ip': true });
             `
           }
