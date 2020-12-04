@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ory/prettier-styles@v1.0.1
+      - uses: ory/prettier-styles@v1.1.1
