@@ -14,16 +14,17 @@ export default (function () {
 
   return {
     onRouteUpdate({ location }) {
-      if (typeof window.gtag !== 'function') {
+      if (!window._paq) {
         return
       }
 
       const pagePath = location
         ? location.pathname + location.search + location.hash
         : undefined
-      window.gtag('config', 'UA-71865250-1', {
-        page_path: pagePath
-      })
+
+      _paq.push(['setCustomUrl', pagePath])
+      _paq.push(['setDocumentTitle', document.domain + '/' + document.title])
+      _paq.push(['trackPageView'])
     }
   }
 })()
