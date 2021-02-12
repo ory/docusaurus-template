@@ -1,5 +1,5 @@
 // gen-faq.js
-// generates faq.mdx and faq.module.css from the contents of faq.yaml. See https://github.com/ory/kratos/pull/1039. 
+// generates faq.mdx and faq.module.css from the contents of faq.yaml. See https://github.com/ory/kratos/pull/1039.
 const fs = require('fs')
 const yaml = require('js-yaml')
 const { Remarkable } = require('remarkable')
@@ -14,7 +14,6 @@ try {
     console.warn('.yaml File does not exists, skipping generating FAQ')
     return 0
   }
-
 
   let fayYaml = fs.readFileSync('yamlPath', 'utf8')
   let faq = yaml.load(fayYaml)
