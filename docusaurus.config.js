@@ -95,7 +95,7 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-      copyright: `Copyright © ${new Date().getFullYear()} ORY GmbH`,
+      copyright: `Copyright © ${new Date().getFullYear()} ORY Systems GmbH`,
       links: [
         {
           title: 'Company',
