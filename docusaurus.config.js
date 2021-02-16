@@ -73,7 +73,7 @@ module.exports = {
         alt: config.projectName,
         src: `img/logo-${config.projectSlug}.svg`,
         srcDark: `img/logo-${config.projectSlug}.svg`,
-        href: `https://www.ory.sh/${config.projectSlug}`
+        href: config.projectSlug === 'docs' ? `https://www.ory.sh` : `https://www.ory.sh/${config.projectSlug}`,
       },
       items: [
         ...links,
