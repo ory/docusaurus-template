@@ -3,161 +3,78 @@
 const fs = require('fs')
 const yaml = require('js-yaml')
 const { Remarkable } = require('remarkable')
-// path for the .yaml that generates the faq.mdx
-const yamlPath = './docs/faq.yaml'
+const path = require('path')
+const yamlPath = path.resolve('./docs/faq.yaml')
+const prettier = require('prettier')
+const prettierStyles = require('ory-prettier-styles')
 
-try {
-  // Generating FAQ.mdx
+// Generating FAQ.mdx
 
-  //Check if file exists
-  if (!fs.existsSync(yamlPath)) {
-    console.warn('.yaml File does not exists, skipping generating FAQ')
-    return 0
-  }
+if (!fs.existsSync(yamlPath)) {
+  //file exists
+  console.warn('.yaml File does not exists, skipping generating FAQ')
+  return 0
+}
 
-  let fayYaml = fs.readFileSync('yamlPath', 'utf8')
-  let faq = yaml.load(fayYaml)
+let faqYaml = fs.readFileSync(yamlPath, 'utf8')
+let faq = yaml.load(faqYaml)
 
-  const tags = Array.from(
-    new Set(
-      faq
-        .map((el) => {
-          return el.tags
-        })
-        .flat(1)
-    )
-  )
+const tags = Array.from(new Set(faq.map(({ tags }) => tags).flat(1)))
 
-  data = `---
+// which project are we running in?
+const project = process.env.CIRCLE_PROJECT_REPONAME
+
+let data = `---
 id: faq
-title: Faq
+title: Frequently Asked Questions (FAQ)
 ---
+<!-- This file is generated. Please edit /docs/faq.yaml or /docs/scripts/gen-faq.js instead. Changes will be overwritten otherwise -->
 
 
 
 import {Question, Faq} from '@theme/Faq'
 
-<Faq tags="${tags.join(' ')}"/>
+<Faq tags={${JSON.stringify(tags)}} switchofftags="${project}"/>
 <br/><br/>
 
 `
-  md = new Remarkable()
-  faq.forEach((el) => {
-    react_tags = el.tags.map((tag) => {
-      return tag + '_src-theme-'
+md = new Remarkable()
+faq.forEach((el) => {
+  react_tags = el.tags.map((tag) => {
+    return tag + '_src-theme-'
+  })
+  data += `<Question tags="question_src-theme- ${react_tags.join(' ')}">\n`
+  data += `    ${el.tags
+    .map((tag) => {
+      return '#' + tag
     })
-    data += `<Question tags="question_src-theme- ${react_tags.join(' ')}">\n`
-    data += `${el.tags
-      .map((tag) => {
-        return '#' + tag
+    .join(' ')} <br/>\n`
+  data += '    ' + md.render(`**Q**: ${el.q}`)
+  data += '    ' + md.render(`**A**: ${el.a}\n`)
+  if (el.context) {
+    data += '    ' + md.render(`context: ${el.context}\n`)
+  }
+  data += `</Question>\n\n<br/>`
+})
+// Unfortunatly this is a mix of html/markdown and prettier is either not
+// properly formatting html or mixing up the syntax (with the html parser)
+
+fs.writeFileSync(path.resolve('./docs/docs/faq.mdx'), data)
+
+// Generating faq.module.css
+const taglist = Array.from(
+  new Set(
+    faq
+      .map((el) => {
+        return el.tags
       })
-      .join(' ')} <br/>\n`
-    data += md.render(`**Q**: ${el.q}`)
-    data += md.render(`**A**: ${el.a}\n`)
-    if (el.context) {
-      data += md.render(`context: ${el.context}\n`)
-    }
-    data += `</Question>\n\n<br/>`
-  })
-
-  fs.writeFile('./docs/docs/faq.mdx', data, (err) => {
-    if (err) throw err
-  })
-
-  // Generating faq.module.css
-  const taglist = Array.from(
-    new Set(
-      faq
-        .map((el) => {
-          return el.tags
-        })
-        .flat(1)
-    )
+      .flat(1)
   )
-  css_file = `
-.pills,
-.tabs {
-    font-weight:var(--ifm-font-weight-bold)
-}
-.pills {
-    padding-left:0
-}
-.pills__item {
-    border-radius:.5rem;
-    cursor:pointer;
-    display:inline-block;
-    padding:.25rem 1rem;
-    transition:background var(--ifm-transition-fast) var(--ifm-transition-timing-default)
-}
-.pills__item--active {
-    background:var(--ifm-pills-color-background-active);
-    color:var(--ifm-pills-color-active)
-}
-.pills__item:not(.pills__item--active):hover {
-    background-color:var(--ifm-pills-color-background-active)
-}
-.pills__item:not(:first-child) {
-    margin-left:var(--ifm-pills-spacing)
-}
-.pills__item:not(:last-child) {
-    margin-right:var(--ifm-pills-spacing)
-}
-.pills--block {
-    display:flex;
-    justify-content:stretch
-}
-.pills--block .pills__item {
-    flex-grow:1;
-    text-align:center
-}
-.tabs {
-    display:flex;
-    overflow-x:auto;
-    color:var(--ifm-tabs-color);
-    margin-bottom:0;
-    padding-left:0
-}
-.tabs__item {
-    border-bottom:3px solid transparent;
-    border-radius:var(--ifm-global-radius);
-    cursor:pointer;
-    display:inline-flex;
-    padding:var(--ifm-tabs-padding-vertical) var(--ifm-tabs-padding-horizontal);
-    margin:0;
-    transition:background-color var(--ifm-transition-fast) var(--ifm-transition-timing-default)
-}
-.tabs__item--active {
-    border-bottom-color:var(--ifm-tabs-color-active);
-    border-bottom-left-radius:0;
-    border-bottom-right-radius:0;
-    color:var(--ifm-tabs-color-active)
-}
-.tabs__item:hover {
-    background-color:var(--ifm-hover-overlay)
-}
-.tabs--block {
-    justify-content:stretch
-}
-.tabs--block .tabs__item {
-    flex-grow:1;
-    justify-content:center
-}
+)
+let css_file = ``
 
-
-p {
-    margin-bottom: 0px;
-}
-    
-.selected {
-    background-color: #ffba00;
-}
-
-div.question {
-    display: none;
-}
-`
-  taglist.forEach((tag) => {
-    css_file += `
+taglist.forEach((tag) => {
+  css_file += `
 li.selected.${tag} {
     color:red;
 }
@@ -167,10 +84,6 @@ li.selected.${tag}~.question.${tag} {
     
 }
 `
-  })
-  fs.writeFile('./docs/src/theme/faq.module.css', css_file, (err) => {
-    if (err) throw err
-  })
-} catch (e) {
-  throw e
-}
+})
+
+fs.writeFileSync('./docs/src/theme/faq.module.gen.css', css_file)
