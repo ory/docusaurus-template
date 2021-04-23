@@ -31,6 +31,7 @@ function update {
       git-town hack "$branch")
 
     cp -Rf "$(pwd)/." "$dir/docs"
+    rm -rf "$dir/docs/.git"
 
     (cd "$dir"; \
       rm docs/update.sh; \
