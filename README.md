@@ -56,7 +56,8 @@ CircleCI Orb `ory/docs` to your CI config, depending on the project type.
 
 ## Update Documentation
 
-This is usually done automatically in CI and will create PRs in the respective projects.
+This is usually done automatically in CI and will create PRs in the respective
+projects.
 
 Check out [docusaurus-template](https://github.com/ory/docusaurus-template)
 using
