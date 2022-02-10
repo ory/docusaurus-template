@@ -1,5 +1,9 @@
 # ORY's Documentation Template Repository
 
+## DEPRECATED
+
+This repository is no longer used. All documentation now resides in github.com/ory/docs.
+
 ## Initialize Documentation
 
 To create a new documentation for a new or existing project, copy the contents
